@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-	public float upForce = 200f;
+	public float upForce = 230f;
 	private bool isDead = false;
 	private Rigidbody2D rb2d;
 	private Animator anim;
@@ -19,11 +19,23 @@ public class Bird : MonoBehaviour
 	void Update ()
 	{
 		if (!isDead) { // alive
-			if (Input.GetMouseButton (0)) { // left click
+			if (Input.GetMouseButtonDown (0)) { // left click
 				rb2d.velocity = Vector2.zero;
 				rb2d.AddForce (Vector2.up * upForce);
 				anim.SetTrigger ("Flap");
+				Debug.Log ("Do GetMouseButton");
 			}
+		}
+	}
+
+	void FixedUpdate ()
+	{
+		if (rb2d.velocity.y > 0) {
+			float angle = Mathf.Lerp (0, 90, rb2d.velocity.y / 7);
+			transform.rotation = Quaternion.Euler (0, 0, angle);
+		} else if (rb2d.velocity.y <= 0) {
+			float angle = Mathf.Lerp (0, -90, -rb2d.velocity.y / 7);
+			transform.rotation = Quaternion.Euler (0, 0, angle);
 		}
 	}
 

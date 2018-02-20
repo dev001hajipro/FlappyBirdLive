@@ -15,11 +15,11 @@ public class ColumnObjectPool : MonoBehaviour
 	public float spawnRate = 4f;
 	private float timeSinceLastSpawned;
 
-	public float columnMinY = -2;
-	public float columnMaxY = 2f;
+	public float columnMinY = -3.5f;
+	public float columnMaxY = 1f;
 
 	private int currentColumn = 0;
-	private float spawnXPosition = 10f;
+	private const float spawnXPosition = 10f;
 
 	void Start ()
 	{

@@ -23,13 +23,13 @@ public class Bird : MonoBehaviour
 				rb2d.velocity = Vector2.zero;
 				rb2d.AddForce (Vector2.up * upForce);
 				anim.SetTrigger ("Flap");
-				Debug.Log ("Do GetMouseButton");
 			}
 		}
 	}
 
 	void FixedUpdate ()
 	{
+		// キーをしたときに、プレイヤーを傾ける
 		if (rb2d.velocity.y > 0) {
 			float angle = Mathf.Lerp (0, 90, rb2d.velocity.y / 7);
 			transform.rotation = Quaternion.Euler (0, 0, angle);
